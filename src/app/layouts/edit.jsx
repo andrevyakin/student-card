@@ -8,14 +8,14 @@ import { Link } from 'react-router-dom';
 const Edit = () => {
     const [data, setData] = useState(() => {
         const persistedValue = window.localStorage.getItem('data');
-    return persistedValue !== null
-        ? JSON.parse(persistedValue)
-        : {
-        firstName: '',
-        lastName: '',
-        birthYear: '',
-        portfolio: ''
-    };
+        return persistedValue !== null
+            ? JSON.parse(persistedValue)
+            : {
+                firstName: '',
+                lastName: '',
+                birthYear: '',
+                portfolio: ''
+            };
     });
     const newRecord = window.localStorage.getItem('newRecord');
     const [errors, setErrors] = useState({});
@@ -33,7 +33,9 @@ const Edit = () => {
         const modalEle = modalRef.current;
         const bsModal = Modal.getInstance(modalEle);
         bsModal.hide();
-        window.localStorage.setItem('newRecord', 'true');
+        if (!newRecord) {
+            window.localStorage.setItem('newRecord', 'true');
+        }
     };
     const handleChange = ({ target }) => {
         setData((prevState) => ({
@@ -96,32 +98,32 @@ const Edit = () => {
                     <div className='card col-md-6 offset-md-3'>
                         <div className='card-body'>
                             <form onSubmit={handleSubmit}>
-                               <TextField
-                                   label = 'Имя'
-                                   name = 'firstName'
-                                   value={data.firstName}
-                                   onChange={handleChange}
-                                   error={errors.firstName}
-                               />
                                 <TextField
-                                    label = 'Фамилия'
-                                    name = 'lastName'
+                                    label='Имя'
+                                    name='firstName'
+                                    value={data.firstName}
+                                    onChange={handleChange}
+                                    error={errors.firstName}
+                                />
+                                <TextField
+                                    label='Фамилия'
+                                    name='lastName'
                                     value={data.lastName}
                                     onChange={handleChange}
                                     error={errors.lastName}
                                 />
                                 <TextField
-                                    label = 'Год рождения'
-                                    type= 'number'
-                                    name = 'birthYear'
+                                    label='Год рождения'
+                                    type='number'
+                                    name='birthYear'
                                     value={data.birthYear}
                                     onChange={handleChange}
                                     error={errors.birthYear}
                                 />
                                 <TextField
-                                    label = 'Портфолио'
-                                    type= 'url'
-                                    name = 'portfolio'
+                                    label='Портфолио'
+                                    type='url'
+                                    name='portfolio'
                                     value={data.portfolio}
                                     onChange={handleChange}
                                     error={errors.portfolio}
@@ -133,15 +135,15 @@ const Edit = () => {
                                         <Link className='nav-link' to='/'>Назад</Link>
                                     </button>}
                                     <button
-                                    className='btn btn-primary'
-                                    onClick={showModal}
-                                    disabled={isValid}
-                                >
-                                    {!newRecord
-                                        ? 'Создать'
-                                        : 'Обновить'
-                                    }
-                                </button>
+                                        className='btn btn-primary'
+                                        onClick={showModal}
+                                        disabled={isValid}
+                                    >
+                                        {!newRecord
+                                            ? 'Создать'
+                                            : 'Обновить'
+                                        }
+                                    </button>
                                 </div>
                                 <ModalWindow
                                     modalRef={modalRef}

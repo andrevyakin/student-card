@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { trueRussianDecline } from '../utils/trueRussianDecline';
 import Profile from '../components/profile';
 
-const Main = () => {
+const Card = () => {
     const persistedValue = JSON.parse(window.localStorage.getItem('data'));
 
     return (
@@ -42,4 +42,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default Card;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import Main from './layouts/main';
+import Card from './layouts/card';
 import Edit from './layouts/edit';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
       <div>
         <Switch>
           <Route path='/edit' component={Edit} />
-          <Route path='/' exact component={Main} />
+          <Route path='/' exact component={Card} />
           <Redirect to='/' />
         </Switch>
       </div>
