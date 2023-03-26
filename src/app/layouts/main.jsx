@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { trueRussianDecline } from '../utils/trueRussianDecline';
+import Profile from '../components/profile';
 
 const Main = () => {
     const persistedValue = JSON.parse(window.localStorage.getItem('data'));
@@ -13,17 +14,10 @@ const Main = () => {
                     {!persistedValue && <h3>Нет данных</h3>}
                     {persistedValue && (
                         <>
+                            <Profile item='Имя' value={persistedValue.firstName}/>
+                            <Profile item='Фамилия' value={persistedValue.lastName}/>
                             <div className='d-flex d-inline-block'>
-                                <h3 className='fw-bold me-3'>Имя:</h3>
-                                <h3>{persistedValue.firstName}</h3>
-                            </div>
-                            <div className='d-flex d-inline-block'>
-                                <h3 className='fw-bold me-3'>Фамилия:</h3>
-                                <h3>{persistedValue.lastName}</h3>
-                            </div>
-                            <div className='d-flex d-inline-block'>
-                                <h3 className='fw-bold me-3'>Год рождения:</h3>
-                                <h3>{persistedValue.birthYear}</h3>
+                                <Profile item='Год рождения' value={persistedValue.birthYear}/>
                                 <h3 className='ms-3'>({trueRussianDecline(persistedValue.birthYear)})</h3>
                             </div>
                             <div className='d-flex d-inline-block'>
