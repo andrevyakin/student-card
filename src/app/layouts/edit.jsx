@@ -17,6 +17,7 @@ const Edit = () => {
         portfolio: ''
     };
     });
+    const newRecord = window.localStorage.getItem('newRecord');
     const [errors, setErrors] = useState({});
     const modalRef = useRef();
     const showModal = () => {
@@ -88,7 +89,7 @@ const Edit = () => {
         <div>
             <div className='container'>
                 <div className='row'>
-                    <h1 className='text-center m-3'>{!window.localStorage.getItem('newRecord')
+                    <h1 className='text-center m-3'>{!newRecord
                         ? 'Создать'
                         : 'Редактировать'}
                     </h1>
@@ -126,7 +127,7 @@ const Edit = () => {
                                     error={errors.portfolio}
                                 />
                                 <div className='d-flex d-inline-block'>
-                                    {window.localStorage.getItem('newRecord') && <button
+                                    {newRecord && <button
                                         className='btn btn-secondary me-3'
                                     >
                                         <Link className='nav-link' to='/'>Назад</Link>
@@ -136,7 +137,7 @@ const Edit = () => {
                                     onClick={showModal}
                                     disabled={isValid}
                                 >
-                                    {!window.localStorage.getItem('newRecord')
+                                    {!newRecord
                                         ? 'Создать'
                                         : 'Обновить'
                                     }
